@@ -6,16 +6,17 @@ public class InputBehaviour : MonoBehaviour
 {
     [SerializeField]
     private ProjectileSpawnerBehaviour _projectileSpawner;
+    private PlayerMovementBehaviour _movement;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        _movement = GetComponent<PlayerMovementBehaviour>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        _movement.MoveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         if (Input.GetButtonDown("Fire1"))
             _projectileSpawner.Fire();
     }
